@@ -7,7 +7,7 @@
   },
   "main": "./lib/northstar-node-client",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node ./node_modules/mocha/bin/mocha test/**/*.test.js"
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/DoSomething/northstar-node-client/issues"
   },
-  "homepage": "https://github.com/DoSomething/northstar-node-client#readme"
+  "homepage": "https://github.com/DoSomething/northstar-node-client#readme",
+  "devDependencies": {
+    "mocha": "^2.5.2",
+    "should": "^8.4.0"
+  }
 }
