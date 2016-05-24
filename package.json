@@ -6,8 +6,11 @@
     "node": ">=4.4.x"
   },
   "main": "./lib/northstar-node-client",
+  "eslintConfig": {
+    "extends": "@dosomething/eslint-config"
+  },
   "scripts": {
-    "test": "node ./node_modules/mocha/bin/mocha test/**/*.test.js"
+    "test": "eslint . && mocha"
   },
   "repository": {
     "type": "git",
@@ -20,6 +23,9 @@
   },
   "homepage": "https://github.com/DoSomething/northstar-node-client#readme",
   "devDependencies": {
+    "@dosomething/eslint-config": "^1.1.1",
+    "eslint": "^2.10.2",
+    "eslint-plugin-react": "^5.1.1",
     "mocha": "^2.5.2",
     "should": "^8.4.0"
   }
