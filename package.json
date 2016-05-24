@@ -1,0 +1,19 @@
+{
+  "name": "northstar-node-client",
+  "version": "0.0.0",
+  "description": "Node.js client for Northstar, the DoSomething.org user API.",
+  "main": "./lib/northstar-node-client",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DoSomething/northstar-node-client.git"
+  },
+  "author": "Sergii Tkachenko <hi@sergii.org>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DoSomething/northstar-node-client/issues"
+  },
+  "homepage": "https://github.com/DoSomething/northstar-node-client#readme"
+}
