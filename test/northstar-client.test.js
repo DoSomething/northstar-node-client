@@ -3,7 +3,7 @@
 /**
  * NorthstarClient.test
  */
-const NorthstarClient = require('../lib/northstar-node-client');
+const NorthstarClient = require('../lib/northstar-client');
 
 /**
  * Test Northstar Nodejs client.
