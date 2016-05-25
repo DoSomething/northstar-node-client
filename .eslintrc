@@ -6,7 +6,7 @@
     # 'use strict' is unnecessary inside of modules.
     sourceType: "script"
   rules:
-    # We don't use babel here, so require 'use global'.
+    # We don't use babel here, so require 'use strict'.
     # See https://git.io/vr6I0.
     strict:
       - 2
