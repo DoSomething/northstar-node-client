@@ -2,3 +2,7 @@
   env:
     node: true
     mocha: true
+  rules:
+    # Turn off should type assertion nagging,
+    # for example: response.should.be.a.Promise();
+    new-cap: 0
