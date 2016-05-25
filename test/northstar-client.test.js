@@ -63,8 +63,10 @@ describe('NorthstarClient', () => {
         response.should.be.a.Promise();
 
         // Test response.
-        response.then(user => validateUnauthorizedTestUser(user))
-        .lastly(done);
+        // TODO: investigate should.eventually.match(unauthorizedTestUser).
+        response
+          .then(user => validateUnauthorizedTestUser(user))
+          .lastly(done);
       });
     });
   });
