@@ -33,7 +33,7 @@ describe('NorthstarClient', () => {
     /**
      * Helper: validate unauthorized user object.
      */
-    function validateUnauthorizedTestUser(user) {
+    function unauthorizedTestUser(user) {
       // TODO: check to be an instance of NorthstarUser.
       user.should.be.an.Object();
 
@@ -55,18 +55,13 @@ describe('NorthstarClient', () => {
     // Get single user.
     describe('getUser()', () => {
       // By id.
-      it('by id should return correct Northstar user', (done) => {
+      it('by id should return correct Northstar user', () => {
         const client = new NorthstarClient();
-        const response = client.getUser('id', '54f9e1c8469c64df6c8b4568');
+        const response = client.getUser('id', '5480c950bffebc651c8b456f');
 
         // Check response to be a Promise.
         response.should.be.a.Promise();
-
-        // Test response.
-        // TODO: investigate should.eventually.match(unauthorizedTestUser).
-        response
-          .then(user => validateUnauthorizedTestUser(user))
-          .lastly(done);
+        return response.should.eventually.match(unauthorizedTestUser);
       });
     });
   });
