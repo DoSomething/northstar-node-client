@@ -18,7 +18,7 @@ describe('NorthstarClient', () => {
     });
   });
 
-  describe.skip('method', () => {
+  describe('method', () => {
     const client = new NorthstarClient();
 
     // Check methods
@@ -29,7 +29,7 @@ describe('NorthstarClient', () => {
 
 
   // Without X-DS-REST-API-Key.
-  describe.skip('unauthorized', () => {
+  describe('unauthorized', () => {
     /**
      * Helper: validate unauthorized user object.
      */
