@@ -5,6 +5,7 @@
  */
 require('dotenv').config();
 const NorthstarClient = require('../lib/northstar-client');
+const NorthstarUser = require('../lib/northstar-user');
 
 /**
  * Test Northstar Nodejs client.
@@ -35,21 +36,22 @@ describe('NorthstarClient', () => {
      */
     function unauthorizedTestUser(user) {
       // TODO: check to be an instance of NorthstarUser.
-      user.should.be.an.Object();
+      user.should.be.an.instanceof(NorthstarUser);
 
       // Ensure properties and test values.
       user.should.have.properties({
         id: '5480c950bffebc651c8b456f',
-        first_name: 'test',
-        last_initial: 'L',
+        firstName: 'test',
+        lastInitial: 'L',
         photo: 'https://avatar.dosomething.org/uploads/avatars/5480c950bffebc651c8b456f.jpeg',
         language: 'en-global',
         country: 'US',
-        drupal_id: '187',
+        drupalID: '187',
+        isAuthorized: false,
       });
 
       // Just ensure presence.
-      user.should.have.properties(['updated_at', 'created_at']);
+      user.should.have.properties(['updatedAt', 'createdAt']);
     }
 
     // Constructor.
