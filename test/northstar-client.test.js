@@ -3,7 +3,7 @@
 /**
  * NorthstarClient.test
  */
-require('dotenv').config();
+require('dotenv').config({ silent: true });
 const NorthstarClient = require('../lib/northstar-client');
 const NorthstarUser = require('../lib/northstar-user');
 const NorthstarUserAuthorized = require('../lib/northstar-user-authorized');
