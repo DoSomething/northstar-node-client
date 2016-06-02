@@ -1,6 +1,6 @@
 {
   "name": "@dosomething/northstar-js",
-  "version": "0.0.2",
+  "version": "0.1.0-0",
   "description": "Javascript client for Northstar, the DoSomething.org user API.",
   "engines": {
     "node": ">=4.4.x"
