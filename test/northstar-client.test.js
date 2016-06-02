@@ -36,7 +36,7 @@ describe('NorthstarClient', () => {
      * Helper: validate unauthorized user object.
      */
     function unauthorizedTestUser(user) {
-      // TODO: check to be an instance of NorthstarUser.
+      // Ensure result to be an instance of NorthstarUser.
       user.should.be.an.instanceof(NorthstarUser);
 
       // Ensure properties and test values.
@@ -101,7 +101,7 @@ describe('NorthstarClient', () => {
      * Helper: validate authorized user object.
      */
     function authorizedTestUser(user) {
-      // TODO: check to be an instance of NorthstarUser.
+      // Ensure result to be an instance of NorthstarUserAuthorized.
       user.should.be.an.instanceof(NorthstarUser);
       user.should.be.an.instanceof(NorthstarUserAuthorized);
 
