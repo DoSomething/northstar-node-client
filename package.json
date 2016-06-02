@@ -1,6 +1,6 @@
 {
   "name": "northstar-js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Javascript client for Northstar, the DoSomething.org user API.",
   "engines": {
     "node": ">=4.4.x"
@@ -25,6 +25,7 @@
     "eslint": "^2.10.2",
     "eslint-plugin-react": "^5.1.1",
     "mocha": "^2.5.2",
+    "dotenv": "^2.0.0",
     "should": "^8.4.0"
   },
   "dependencies": {
