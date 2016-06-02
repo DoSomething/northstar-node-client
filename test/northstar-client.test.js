@@ -3,30 +3,46 @@
 /**
  * NorthstarClient.test
  */
+require('dotenv').config();
 const NorthstarClient = require('../lib/northstar-client');
 
 /**
  * Test Northstar Nodejs client.
  */
 describe('NorthstarClient', () => {
+  /**
+   * Helper: get default client.
+   */
+  function getUnauthorizedClient() {
+    return new NorthstarClient({
+      baseURI: process.env.DS_REST_API_BASEURI,
+    });
+  }
+
   // Constructor.
   describe('constructor', () => {
     // Test new instance.
+    it('without options should throw a TypeError', () => {
+      (() => new NorthstarClient()).should.throw(TypeError);
+    });
+
+    // Check API base URL.
+    it('base URL option should be set', () => {
+      process.env.DS_REST_API_BASEURI.should.be.not.empty();
+    });
+
+    // Test new instance.
     it('should create new instance', () => {
-      const client = new NorthstarClient();
-      client.should.be.an.instanceof(NorthstarClient);
+      getUnauthorizedClient().should.be.an.instanceof(NorthstarClient);
     });
   });
 
   describe('method', () => {
-    const client = new NorthstarClient();
-
     // Check methods
     it('getUser() should be exposed', () => {
-      client.getUser.should.be.a.Function();
+      getUnauthorizedClient().getUser.should.be.a.Function();
     });
   });
-
 
   // Without X-DS-REST-API-Key.
   describe('unauthorized', () => {
@@ -56,7 +72,7 @@ describe('NorthstarClient', () => {
     describe('getUser()', () => {
       // By id.
       it('by id should return correct Northstar user', () => {
-        const client = new NorthstarClient();
+        const client = getUnauthorizedClient();
         const response = client.getUser('id', '5480c950bffebc651c8b456f');
 
         // Check response to be a Promise.
