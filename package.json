@@ -29,6 +29,6 @@
     "should": "^8.4.0"
   },
   "dependencies": {
-    "superagent": "^2.0.0-alpha.3"
+    "superagent": "^2.0.0"
   }
 }
