@@ -1,6 +1,6 @@
 {
   "name": "@dosomething/northstar-js",
-  "version": "0.1.0-0",
+  "version": "0.1.0-1",
   "description": "Javascript client for Northstar, the DoSomething.org user API.",
   "engines": {
     "node": ">=4.4.x"
@@ -29,6 +29,6 @@
     "should": "^8.4.0"
   },
   "dependencies": {
-    "superagent": "^2.0.0-alpha.3"
+    "superagent": "^2.0.0"
   }
 }
