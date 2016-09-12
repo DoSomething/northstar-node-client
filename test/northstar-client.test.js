@@ -20,6 +20,22 @@ const publicUserProperties = [
   'photo',
   'updatedAt',
 ];
+const privateUserProperties = [
+  'addrCity',
+  'addrStreet1',
+  'addrStreet2',
+  'addrState',
+  'addrZip',
+  'birthdate',
+  'email',
+  'interests',
+  'lastName',
+  'mobile',
+  'mobilecommonsID',
+  'mobilecommonsStatus',
+  'parseInstallationIds',
+  'source',
+];
 
 /**
  * Test Northstar Nodejs client.
@@ -105,23 +121,6 @@ describe('NorthstarClient', () => {
       // Ensure result to be an instance of NorthstarUserAuthorized.
       user.should.be.an.instanceof(NorthstarUser);
       user.should.be.an.instanceof(NorthstarUserAuthorized);
-
-      const privateUserProperties = [
-        'addrCity',
-        'addrStreet1',
-        'addrStreet2',
-        'addrState',
-        'addrZip',
-        'birthdate',
-        'email',
-        'interests',
-        'lastName',
-        'mobile',
-        'mobilecommonsID',
-        'mobilecommonsStatus',
-        'parseInstallationIds',
-        'source',
-      ];
 
       // Just ensure presence.
       user.should.have.properties(privateUserProperties);
