@@ -70,6 +70,7 @@ describe('NorthstarClient', () => {
 
       // Just ensure presence.
       user.should.have.properties(publicUserProperties);
+      user.should.not.have.properties(privateUserProperties);
     }
 
     // Constructor.
@@ -123,8 +124,8 @@ describe('NorthstarClient', () => {
       user.should.be.an.instanceof(NorthstarUserAuthorized);
 
       // Just ensure presence.
-      user.should.have.properties(privateUserProperties);
       user.should.have.properties(publicUserProperties);
+      user.should.have.properties(privateUserProperties);
     }
 
     /**
