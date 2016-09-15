@@ -36,6 +36,7 @@ const privateUserProperties = [
   'parseInstallationIds',
   'source',
 ];
+const testUserId = '5480c950bffebc651c8b456f';
 
 /**
  * Test Northstar Nodejs client.
@@ -95,16 +96,17 @@ describe('NorthstarClient', () => {
     });
 
     // Get single user.
+    // @todo: Create test files per endpoint?
     describe('getUser()', () => {
       // Check getUser method.
       it('getUser() should be exposed', () => {
-        getUnauthorizedClient().getUser.should.be.a.Function();
+        getUnauthorizedClient().Users.getUser.should.be.a.Function();
       });
 
       // By id.
       it('by id should return correct Northstar user', () => {
         const client = getUnauthorizedClient();
-        const response = client.getUser('id', '5480c950bffebc651c8b456f');
+        const response = client.Users.getUser('id', testUserId);
 
         // Check response to be a Promise.
         response.should.be.a.Promise();
@@ -133,7 +135,7 @@ describe('NorthstarClient', () => {
      */
     function testUserBy(type, id) {
       const client = getAuthorizedClient();
-      const response = client.getUser(type, id);
+      const response = client.Users.getUser(type, id);
 
       // Check response to be a Promise.
       response.should.be.a.Promise();
@@ -160,7 +162,7 @@ describe('NorthstarClient', () => {
     describe('getUser()', () => {
       // By id.
       it('by id should return correct Northstar user', () => {
-        testUserBy('id', '5480c950bffebc651c8b456f');
+        testUserBy('id', testUserId);
       });
 
       // By email.
