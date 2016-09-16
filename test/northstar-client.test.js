@@ -97,17 +97,16 @@ describe('NorthstarClient', () => {
     });
 
     // Get single user.
-    // @todo: Create test files per endpoint?
-    describe('getUser()', () => {
+    describe('Users.get()', () => {
       // Check getUser method.
-      it('getUser() should be exposed', () => {
-        getUnauthorizedClient().Users.getUser.should.be.a.Function();
+      it('Users.get() should be exposed', () => {
+        getUnauthorizedClient().Users.get.should.be.a.Function();
       });
 
       // By id.
       it('by id should return correct Northstar user', () => {
         const client = getUnauthorizedClient();
-        const response = client.Users.getUser('id', testUserId);
+        const response = client.Users.get('id', testUserId);
 
         // Check response to be a Promise.
         response.should.be.a.Promise();
@@ -136,7 +135,7 @@ describe('NorthstarClient', () => {
      */
     function testUserBy(type, id) {
       const client = getAuthorizedClient();
-      const response = client.Users.getUser(type, id);
+      const response = client.Users.get(type, id);
 
       // Check response to be a Promise.
       response.should.be.a.Promise();
@@ -160,7 +159,7 @@ describe('NorthstarClient', () => {
     });
 
     // Get single user.
-    describe('getUser()', () => {
+    describe('Users.get()', () => {
       // By id.
       it('by id should return a Northstar user', () => {
         testUserBy('id', testUserId);
@@ -188,16 +187,16 @@ describe('NorthstarClient', () => {
     }
 
     // Get single signup.
-    describe('getSignup()', () => {
+    describe('Signups.get()', () => {
       // Check getSignup method.
-      it('getSignup() should be exposed', () => {
-        getUnauthorizedClient().Signups.getSignup.should.be.a.Function();
+      it('Signups.get() should be exposed', () => {
+        getUnauthorizedClient().Signups.get.should.be.a.Function();
       });
 
       // By id.
       it('getSignup() should return a Northstar signup', () => {
         const client = getUnauthorizedClient();
-        const response = client.Signups.getSignup(3072);
+        const response = client.Signups.get(3072);
 
         response.should.be.a.Promise();
         return response.should.eventually.match(testSignup);
