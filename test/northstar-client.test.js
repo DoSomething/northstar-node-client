@@ -7,6 +7,7 @@ require('dotenv').config({ silent: true });
 const NorthstarClient = require('../lib/northstar-client');
 const NorthstarUser = require('../lib/northstar-user');
 const NorthstarUserAuthorized = require('../lib/northstar-user-authorized');
+const NorthstarSignup = require('../lib/northstar-signup');
 
 const publicUserProperties = [
   'country',
@@ -161,18 +162,45 @@ describe('NorthstarClient', () => {
     // Get single user.
     describe('getUser()', () => {
       // By id.
-      it('by id should return correct Northstar user', () => {
+      it('by id should return a Northstar user', () => {
         testUserBy('id', testUserId);
       });
 
       // By email.
-      it('by email should return correct Northstar user', () => {
+      it('by email should return a Northstar user', () => {
         testUserBy('email', 'test@dosomething.org');
       });
 
       // By mobile.
-      it('by mobile should return correct Northstar user', () => {
+      it('by mobile should return a Northstar user', () => {
         testUserBy('mobile', '5555555555');
+      });
+    });
+  });
+
+  describe('signup', () => {
+    /**
+     * Helper: validate signup object.
+     */
+    function testSignup(signup) {
+      signup.should.be.an.instanceof(NorthstarSignup);
+      signup.should.have.properties(['id', 'campaign', 'user', 'createdAt']);
+    }
+
+    // Get single signup.
+    describe('getSignup()', () => {
+      // Check getSignup method.
+      it('getSignup() should be exposed', () => {
+        getUnauthorizedClient().Signups.getSignup.should.be.a.Function();
+      });
+
+      // By id.
+      it('getSignup() should return a Northstar signup', () => {
+        const client = getUnauthorizedClient();
+        const response = client.Signups.getSignup(3072);
+
+        response.should.be.a.Promise();
+        return response.should.eventually.match(testSignup);
       });
     });
   });
