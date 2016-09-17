@@ -175,6 +175,19 @@ describe('NorthstarClient', () => {
         testUserBy('mobile', '5555555555');
       });
     });
+
+    // Create user.
+    describe('Users.create()', () => {
+      const client = getAuthorizedClient();
+      const response = client.Users.create({
+        email: `test+${Date.now()}@dosomething.org`,
+        password: 'password',
+        source: 'northstar-js-test',
+      });
+
+      response.should.be.a.Promise();
+      return response.should.eventually.match(authorizedTestUser);
+    });
   });
 
   describe('signups', () => {
