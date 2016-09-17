@@ -7,6 +7,7 @@ require('dotenv').config({ silent: true });
 const NorthstarClient = require('../lib/northstar-client');
 const NorthstarUser = require('../lib/northstar-user');
 const NorthstarUserAuthorized = require('../lib/northstar-user-authorized');
+const NorthstarSignup = require('../lib/northstar-signup');
 
 const publicUserProperties = [
   'country',
@@ -96,17 +97,16 @@ describe('NorthstarClient', () => {
     });
 
     // Get single user.
-    // @todo: Create test files per endpoint?
-    describe('getUser()', () => {
+    describe('Users.get()', () => {
       // Check getUser method.
-      it('getUser() should be exposed', () => {
-        getUnauthorizedClient().Users.getUser.should.be.a.Function();
+      it('Users.get() should be exposed', () => {
+        getUnauthorizedClient().Users.get.should.be.a.Function();
       });
 
       // By id.
       it('by id should return correct Northstar user', () => {
         const client = getUnauthorizedClient();
-        const response = client.Users.getUser('id', testUserId);
+        const response = client.Users.get('id', testUserId);
 
         // Check response to be a Promise.
         response.should.be.a.Promise();
@@ -135,7 +135,7 @@ describe('NorthstarClient', () => {
      */
     function testUserBy(type, id) {
       const client = getAuthorizedClient();
-      const response = client.Users.getUser(type, id);
+      const response = client.Users.get(type, id);
 
       // Check response to be a Promise.
       response.should.be.a.Promise();
@@ -159,20 +159,66 @@ describe('NorthstarClient', () => {
     });
 
     // Get single user.
-    describe('getUser()', () => {
+    describe('Users.get()', () => {
       // By id.
-      it('by id should return correct Northstar user', () => {
+      it('by id should return a Northstar user', () => {
         testUserBy('id', testUserId);
       });
 
       // By email.
-      it('by email should return correct Northstar user', () => {
+      it('by email should return a Northstar user', () => {
         testUserBy('email', 'test@dosomething.org');
       });
 
       // By mobile.
-      it('by mobile should return correct Northstar user', () => {
+      it('by mobile should return a Northstar user', () => {
         testUserBy('mobile', '5555555555');
+      });
+    });
+  });
+
+  describe('signups', () => {
+    /**
+     * Helper: validate signup object.
+     */
+    function testSignup(signup) {
+      signup.should.be.an.instanceof(NorthstarSignup);
+      signup.should.have.properties(['id', 'campaign', 'user', 'createdAt']);
+    }
+    /**
+     * Helper: validate array of signup objects.
+     */
+    function testSignups(signups) {
+      signups.should.be.an.instanceof(Array);
+      const signup = signups[0];
+      signup.should.match(testSignup);
+    }
+
+    describe('Signups.get()', () => {
+      it('Signups.get() should be exposed', () => {
+        getUnauthorizedClient().Signups.get.should.be.a.Function();
+      });
+
+      it('getSignup() should return a Northstar signup', () => {
+        const client = getUnauthorizedClient();
+        const response = client.Signups.get(3072);
+
+        response.should.be.a.Promise();
+        return response.should.eventually.match(testSignup);
+      });
+    });
+
+    describe('Signups.index()', () => {
+      it('Signups.index() should be exposed', () => {
+        getUnauthorizedClient().Signups.index.should.be.a.Function();
+      });
+
+      it('Signups.index() should return an array of Northstar signups', () => {
+        const client = getUnauthorizedClient();
+        const response = client.Signups.index({ user: testUserId });
+
+        response.should.be.a.Promise();
+        return response.should.eventually.match(testSignups);
       });
     });
   });
