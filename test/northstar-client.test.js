@@ -177,7 +177,7 @@ describe('NorthstarClient', () => {
     });
   });
 
-  describe('signup', () => {
+  describe('signups', () => {
     /**
      * Helper: validate signup object.
      */
@@ -185,21 +185,40 @@ describe('NorthstarClient', () => {
       signup.should.be.an.instanceof(NorthstarSignup);
       signup.should.have.properties(['id', 'campaign', 'user', 'createdAt']);
     }
+    /**
+     * Helper: validate array of signup objects.
+     */
+    function testSignups(signups) {
+      signups.should.be.an.instanceof(Array);
+      const signup = signups[0];
+      signup.should.match(testSignup);
+    }
 
-    // Get single signup.
     describe('Signups.get()', () => {
-      // Check getSignup method.
       it('Signups.get() should be exposed', () => {
         getUnauthorizedClient().Signups.get.should.be.a.Function();
       });
 
-      // By id.
       it('getSignup() should return a Northstar signup', () => {
         const client = getUnauthorizedClient();
         const response = client.Signups.get(3072);
 
         response.should.be.a.Promise();
         return response.should.eventually.match(testSignup);
+      });
+    });
+
+    describe('Signups.index()', () => {
+      it('Signups.index() should be exposed', () => {
+        getUnauthorizedClient().Signups.index.should.be.a.Function();
+      });
+
+      it('Signups.index() should return an array of Northstar signups', () => {
+        const client = getUnauthorizedClient();
+        const response = client.Signups.index({ user: testUserId });
+
+        response.should.be.a.Promise();
+        return response.should.eventually.match(testSignups);
       });
     });
   });
