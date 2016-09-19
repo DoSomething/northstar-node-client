@@ -8,6 +8,7 @@ const NorthstarClient = require('../lib/northstar-client');
 const NorthstarUser = require('../lib/northstar-user');
 const NorthstarUserAuthorized = require('../lib/northstar-user-authorized');
 const NorthstarSignup = require('../lib/northstar-signup');
+const NorthstarReportback = require('../lib/northstar-reportback');
 
 const publicUserProperties = [
   'country',
@@ -233,6 +234,39 @@ describe('NorthstarClient', () => {
 
         response.should.be.a.Promise();
         return response.should.eventually.match(testSignups);
+      });
+    });
+  });
+
+  describe('reportbacks', () => {
+    /**
+     * Helper: validate reportback object.
+     */
+    function testReportback(reportback) {
+      reportback.should.be.an.instanceof(NorthstarReportback);
+      reportback.should.have.properties(['id', 'campaign', 'user', 'createdAt', 'quantity']);
+    }
+
+
+    describe('Reportbacks.post()', () => {
+      it('should be exposed', () => {
+        getAuthorizedClient().Reportbacks.post.should.be.a.Function();
+      });
+
+      it('should return a Reportback', () => {
+        const client = getAuthorizedClient();
+        const response = client.Reportbacks.post({
+          nid: 1377,
+          uid: 5,
+          quantity: 30,
+          source: 'northstar-js-test',
+          caption: 'test',
+          why_participated: 'test',
+          file_url: 'https://pbs.twimg.com/profile_images/344513261577739462/0ffdff5acd5ff3bcd34c0cd10baf2a14_400x400.png',
+        });
+
+        response.should.be.a.Promise();
+        return response.should.eventually.match(testReportback);
       });
     });
   });
