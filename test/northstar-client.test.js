@@ -179,9 +179,10 @@ describe('NorthstarClient', () => {
     // Create user.
     describe('Users.create()', () => {
       const client = getAuthorizedClient();
+      const timestamp = Date.now();
       const response = client.Users.create({
-        email: `test+${Date.now()}@dosomething.org`,
-        password: 'password',
+        email: `test+northstar-js+${timestamp}@dosomething.org`,
+        password: `password+${timestamp}`,
         source: 'northstar-js-test',
       });
 
