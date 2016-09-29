@@ -35,6 +35,7 @@ const privateUserProperties = [
   'mobilecommonsID',
   'mobilecommonsStatus',
   'parseInstallationIds',
+  'role',
   'source',
 ];
 const testUserId = '5480c950bffebc651c8b456f';
