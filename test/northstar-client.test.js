@@ -210,16 +210,24 @@ describe('NorthstarClient', () => {
     }
 
     describe('Signups.get()', () => {
-      it('Signups.get() should be exposed', () => {
+      it('should be exposed', () => {
         getUnauthorizedClient().Signups.get.should.be.a.Function();
       });
 
-      it('getSignup() should return a Northstar signup', () => {
+      it('should return a Northstar signup when passed valid id', () => {
         const client = getUnauthorizedClient();
         const response = client.Signups.get(3072);
 
         response.should.be.a.Promise();
         return response.should.eventually.match(testSignup);
+      });
+
+      it('should return an error when Signup is missing User or Campaign', () => {
+        const client = getUnauthorizedClient();
+        const response = client.Signups.get(23);
+
+        response.should.be.a.Promise();
+        return response.should.eventually.throw();
       });
     });
 
