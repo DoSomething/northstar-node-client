@@ -1,5 +1,7 @@
-box: node:4.4
+box: node:6.11
 build:
   steps:
     - npm-install
-    - npm-test
+    - script:
+      name: run all tests
+      code: npm run all-tests
