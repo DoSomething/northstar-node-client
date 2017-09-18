@@ -5,6 +5,7 @@ require('dotenv').config();
 const test = require('ava');
 const chai = require('chai');
 const sinonChai = require('sinon-chai');
+const underscore = require('underscore');
 
 const config = require('../config');
 
@@ -58,7 +59,7 @@ test('NorthstarClient.Users.update should return an updated object', async (t) =
   const userId = config.testUserId;
   const data = {};
   const field = config.testUpdateField;
-  const value = config.testUpdateValue;
+  const value = underscore.sample(config.testUpdateValues);
   data[field] = value;
 
   const client = new NorthstarClient(config);

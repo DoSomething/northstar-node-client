@@ -7,7 +7,7 @@ const configVars = {
   testCreateEmailDomain: 'dosomething.org',
   testCreateSource: 'northstar-js-test',
   testUpdateField: 'sms_status',
-  testUpdateValue: 'less',
+  testUpdateValues: ['active', 'less'],
   testUserId: process.env.DS_NORTHSTAR_TEST_USER_ID || '5480c950bffebc651c8b456f',
 };
 
