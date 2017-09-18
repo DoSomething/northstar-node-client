@@ -3,30 +3,40 @@
   "version": "1.0.0",
   "description": "Javascript client for Northstar, the DoSomething.org user API.",
   "engines": {
-    "node": ">=4.4.x"
+    "node": "6.11.1"
   },
   "main": "./lib/northstar-client",
   "scripts": {
-    "test": "npm run lint && mocha",
-    "lint": "eslint test/*.js lib/*.js"
+    "all-tests": "npm run lint && npm test",
+    "lint": "eslint --ext=.js .",
+    "test": "ava --serial"
+  },
+  "ava": {
+    "powerAssert": false,
+    "failWithoutAssertions": false,
+    "files": [
+      "test/**/*.test.js"
+    ]
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DoSomething/northstar-js.git"
   },
-  "author": "Sergii Tkachenko <hi@sergii.org>",
+  "author": "DoSomething.org",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/DoSomething/northstar-js/issues"
   },
   "homepage": "https://github.com/DoSomething/northstar-js#readme",
   "devDependencies": {
-    "@dosomething/eslint-config": "^1.1.1",
-    "eslint": "^2.10.2",
-    "eslint-plugin-react": "^5.1.1",
-    "mocha": "^2.5.2",
-    "dotenv": "^2.0.0",
-    "should": "^8.4.0"
+    "@dosomething/eslint-config": "^3.1.0",
+    "ava": "^0.21.0",
+    "chai": "^4.1.0",
+    "dotenv": "^4.0.0",
+    "eslint": "^3.19.0",
+    "eslint-plugin-ava": "^4.2.0",
+    "sinon": "^2.3.8",
+    "sinon-chai": "^2.12.0"
   },
   "dependencies": {
     "superagent": "^2.3.0"

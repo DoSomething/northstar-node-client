@@ -1,12 +1,8 @@
 # northstar-js
-Javascript client for Northstar, the DoSomething.org user API.
+Node.js client for [Northstar](https://github.com/dosomething/northstar), the DoSomething.org user API.
 
-Currently this is Node.js implementation only.
 
 # Testing
-TODO: explain dotenv usage, example `.env` file:
+We currently live dangerously, testing via creating and updating Users on a live environment. Check `.env.example` for required config variables to run tests and modify live data :fire:
 
-```
-DS_REST_API_BASEURI=https://northstar-qa.dosomething.org/v1
-DS_REST_API_KEY=your_secret_key
-```
+TODO: Use [nock](https://www.npmjs.com/package/nock) instead.
