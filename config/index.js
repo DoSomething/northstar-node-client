@@ -6,6 +6,8 @@ const configVars = {
   requiredOptionsMessage: 'Missing required apiKey or baseURI options.',
   testCreateEmailDomain: 'dosomething.org',
   testCreateSource: 'northstar-js-test',
+  testUpdateField: 'sms_status',
+  testUpdateValue: 'less',
 };
 
 module.exports = configVars;

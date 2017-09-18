@@ -13,6 +13,8 @@ chai.use(sinonChai);
 
 // Module to test
 const NorthstarClient = require('../lib/northstar-client');
+// This will get populated in our test.
+let userId = null;
 
 // Tests
 test('NorthstarClient should throw error when config.baseURI is undefined', (t) => {
@@ -39,15 +41,30 @@ test('NorthstarClient should respond to Users', () => {
 test('NorthstarClient.Users.create should return an object', async (t) => {
   const timestamp = Date.now();
   const email = `test+northstar-js+${timestamp}@${config.testCreateEmailDomain}`;
+  const source = config.testCreateSource;
+
   const data = {
     email,
+    source,
     password: `password+${timestamp}`,
-    source: config.testCreateSource,
   };
 
   const client = new NorthstarClient(config);
   const user = await client.Users.create(data);
   user.should.have.property('id');
   t.deepEqual(email, user.email);
-  t.deepEqual(config.testCreateSource, user.source);
+  t.deepEqual(source, user.source);
+  // Set our userId for next test.
+  userId = user.id;
+});
+
+test('NorthstarClient.Users.update should return an updated object', async (t) => {
+  const data = {};
+  const field = config.testUpdateField;
+  const value = config.testUpdateValue;
+  data[field] = value;
+
+  const client = new NorthstarClient(config);
+  const user = await client.Users.update(userId, data);
+  t.deepEqual(value, user[field]);
 });
