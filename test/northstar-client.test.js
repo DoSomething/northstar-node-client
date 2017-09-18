@@ -5,6 +5,7 @@ require('dotenv').config();
 const test = require('ava');
 const chai = require('chai');
 const sinonChai = require('sinon-chai');
+const underscore = require('underscore');
 
 const config = require('../config');
 
@@ -39,15 +40,29 @@ test('NorthstarClient should respond to Users', () => {
 test('NorthstarClient.Users.create should return an object', async (t) => {
   const timestamp = Date.now();
   const email = `test+northstar-js+${timestamp}@${config.testCreateEmailDomain}`;
+  const source = config.testCreateSource;
+
   const data = {
     email,
+    source,
     password: `password+${timestamp}`,
-    source: config.testCreateSource,
   };
 
   const client = new NorthstarClient(config);
   const user = await client.Users.create(data);
   user.should.have.property('id');
   t.deepEqual(email, user.email);
-  t.deepEqual(config.testCreateSource, user.source);
+  t.deepEqual(source, user.source);
+});
+
+test('NorthstarClient.Users.update should return an updated object', async (t) => {
+  const userId = config.testUserId;
+  const data = {};
+  const field = config.testUpdateField;
+  const value = underscore.sample(config.testUpdateValues);
+  data[field] = value;
+
+  const client = new NorthstarClient(config);
+  const user = await client.Users.update(userId, data);
+  t.deepEqual(value, user[field]);
 });
