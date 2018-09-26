@@ -7,7 +7,6 @@ const chai = require('chai');
 const Promise = require('bluebird');
 const sinon = require('sinon');
 const sinonChai = require('sinon-chai');
-const underscore = require('underscore');
 
 const config = require('../../config');
 const stubsHelper = require('../helpers/stubs');
